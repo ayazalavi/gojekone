@@ -10,7 +10,8 @@ $(document).ready(function() {
         get: (searchParams, prop) => searchParams.get(prop),
     });
     // Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
-    productTitle = params.name;
+    productTitle = params.name.trim();
+    
     _filter = params.filter;
     $(".logo-load").css({ "visibility": "inherit", "opacity": "1" });
     initialize(_filter);
@@ -30,7 +31,7 @@ function initialize(_filter) {
             }else if(_filter === "simon"){
                 productDetails = data["products"].simon.filter(ele => ele["Product Title"].trim().toLowerCase() === productTitle.toLowerCase());
             }else{
-                productDetails = data["products"].books.filter(ele => ele["Product Title"].trim().toLowerCase() === productTitle.toLowerCase());
+                productDetails = data["products"].books.filter(ele => ele["Product Title"]?.trim().toLowerCase() === productTitle.toLowerCase());
             }
             if (productDetails.length) {
                 $("#noFound").hide()
@@ -66,7 +67,7 @@ function initialize(_filter) {
                 }, 200)
                 $("#lastBread").text(productDetails[0]["Product Title"]);
                 $(".product__title").text(productDetails[0]["Product Title"] + ", " + productDetails[0]["Author"]);
-                $(".product__text").text(productDetails[0].Description);
+                $(".product__text").html(productDetails[0].Description);
                 $("#genre").text(productDetails[0].Genre);
                 $(".product__price").text(productDetails[0].Price);
                 productDetails[0]["Buy Button Text - 1"] ? $("#button-1").text(productDetails[0]["Buy Button Text - 1"]) : $("#col__1").hide()

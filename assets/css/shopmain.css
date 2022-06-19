@@ -7620,6 +7620,7 @@ a[href^="https://maps.google.com/maps"] {
     width: 100%;
     height: 50px;
     margin: 0 0 20px;
+    
 }
 
 .select_1 li {
@@ -7729,6 +7730,7 @@ a[href^="https://maps.google.com/maps"] {
     bottom: auto !important;
     background: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    padding-bottom: 10px;
 }
 
 .select_1 .jq-selectbox__dropdown ul {

@@ -37,14 +37,14 @@ function initialize(isSage, isSimonSchuster) {
             }
             products1.length > 0 ? $("#noFound").hide() : $("#noFound").show();
             $.each(products1, (ele, ele1) => {
-                cols += "<article class='short-item'><div class='short-item__all'><a class='short-item__image-bg' href='product-details.html?name=" + ele1["Product Title"] + "&filter="+ _filter +"'><img class='short-item__image' src='" + ele1.Image + "'alt=''></a><div class='short-item__top'><div class='short-item__cols'><div class='short-item__col'><span class='item-tag item-tag_red'>Sale</span></div><div class='short-item__col'><button class='heart-button js-toggle-active'></button></div></div></div><h4 class='short-item__title'><a class='short-item__link' href='product-details.html?name=" + ele1["Product Title"] + "&filter="+ _filter +"'>" + ele1["Product Title"] + ', ' + ele1["Author"] + "</a></h4><span class='short-item__price'>" + ele1.Price + "</span></div></article>"
+                cols += "<article class='short-item'><div class='short-item__all'><a class='short-item__image-bg' href='product-details.html?name=" + encodeURIComponent(ele1["Product Title"]) + "&filter="+ _filter +"'><img class='short-item__image' src='" + ele1.Image + "'alt=''></a><div class='short-item__top'><div class='short-item__cols'><div class='short-item__col'><span class='item-tag item-tag_red'>Sale</span></div><div class='short-item__col'><button class='heart-button js-toggle-active'></button></div></div></div><h4 class='short-item__title'><a class='short-item__link' href='product-details.html?name=" + encodeURIComponent (ele1["Product Title"]) + "&filter="+ _filter +"'>" + ele1["Product Title"] + ', ' + ele1["Author"] + "</a></h4><span class='short-item__price'>" + ele1.Price + "</span></div></article>"
             })
             $(".shop-panel__text b").text(products1.length);
             $('.inner-catalog').append(cols); { /* <option value=''>--Choose Option--</option> */ }
             let genreOption = "";
             // let genreList = "";
             $.each(data.genre, (ele, ele1) => {
-                genreOption += `<option>${ele1["Genre List"]}</option>`
+                genreOption += `<option value="${ele1["Genre List"]}">${ele1["Genre List"]}</option>`
                     // genreList += `<li class="${ele === 0 ? 'selected sel' : ''}" style=""><span>${ele1["Genre List"]}</span></li>`
             })
             $("#selectGenre").append(genreOption);
@@ -79,9 +79,10 @@ function getval(sel) {
     //     .then(response => response.json())
     //     .then(data => {
     $(".logo-load").css({ "visibility": "inherit", "opacity": "1" });
-    $('.inner-catalog article').remove();
+    $('.inner-catalog article').remove();    
     setTimeout(() => {
-        let products = sel.value === "All Genre" ? products1 : products1.filter(ele => ele.Genre.toString().toLowerCase() === sel.value.toLowerCase());
+        let products = sel.value === "All Genre" ? products1 : products1.filter(ele => ele.Genre?.toLowerCase() === sel.value.toLowerCase());
+        
         products.length > 0 ? $("#noFound").hide() : $("#noFound").show();
         let cols = "";
         $.each(products, (ele, ele1) => {
