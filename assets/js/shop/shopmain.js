@@ -845,9 +845,9 @@ window.addEventListener("oriantationchange", resizeWindow);
 /* scrolled header */
 jQuery(window).on("scroll load", function() {
     if (jQuery(window).scrollTop() > 20) {
-        jQuery(".header").addClass("scrolled");
+      //  jQuery(".header").addClass("scrolled");
     } else {
-        jQuery(".header").removeClass("scrolled");
+        //jQuery(".header").removeClass("scrolled");
     }
 });
 /* scrolled header */
