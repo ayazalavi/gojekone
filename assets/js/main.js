@@ -12,6 +12,26 @@
     })
 
 
+    //Download Genres
+    fetch('https://gojekone.herokuapp.com/', {
+        method: 'GET', // or 'PUT'
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            let genreOption = '';
+            $.each(data.genre, (ele, ele1) => {
+                genreOption += `<li class="hide-nav__item">
+                         <a class="hide-nav__link" href="ourbooks-filter.html?filter=${ele1["Genre List"]}">${ele1["Genre List"]}</a>
+                    </li>`                
+                    // genreList += `<li class="${ele === 0 ? 'selected sel' : ''}" style=""><span>${ele1["Genre List"]}</span></li>`
+            })
+            $("#ourbooks ul").html(genreOption)
+        });
+    
+
     //--------------------------------------------------
     // Animation Start
     //--------------------------------------------------

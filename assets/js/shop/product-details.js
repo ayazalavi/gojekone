@@ -18,7 +18,7 @@ $(document).ready(function() {
 });
 
 function initialize(_filter) {
-    fetch('https://gojek-day2-api.herokuapp.com/', {
+    fetch('https://gojekone.herokuapp.com/', {
             method: 'GET', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json',

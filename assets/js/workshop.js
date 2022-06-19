@@ -4,7 +4,7 @@ $(document).ready(function() {
 });
 
 function initialize_workshop() {
-    fetch('https://gojek-day2-api.herokuapp.com/workshops', {
+    fetch('https://gojekone.herokuapp.com/workshops', {
             method: 'GET', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json',
